@@ -1,0 +1,134 @@
+{
+  "title": "RainPoint Tuya Cloud",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect RainPoint through Tuya Cloud",
+        "description": "Enter the Tuya IoT Cloud credentials that successfully controlled the RainPoint timer.",
+        "data": {
+          "name": "Name",
+          "api_region": "Tuya API region",
+          "api_key": "Access ID / Client ID",
+          "api_secret": "Access Secret / Client Secret",
+          "api_device_id": "Cloud authorization device ID",
+          "device_id": "RainPoint timer device ID"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Could not connect to Tuya Cloud.",
+      "invalid_auth": "Tuya rejected the credentials or project permissions.",
+      "unsupported_device": "The device does not expose the expected RainPoint two-zone commands.",
+      "unknown": "Unexpected error."
+    },
+    "abort": {
+      "already_configured": "This RainPoint timer is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "RainPoint settings",
+        "description": "Set polling, watering duration, and optional calibrated flow rates. Leave GPM at 0 until the bucket test is complete.",
+        "data": {
+          "poll_interval": "Cloud polling interval",
+          "left_duration": "Left zone duration",
+          "right_duration": "Right zone duration",
+          "left_gpm": "Left zone calibrated flow",
+          "right_gpm": "Right zone calibrated flow"
+        }
+      }
+    }
+  },
+  "selector": {
+    "api_region": {
+      "options": {
+        "us": "United States",
+        "us-e": "United States East",
+        "eu": "Europe",
+        "eu-w": "Europe West",
+        "in": "India",
+        "cn": "China"
+      }
+    }
+  },
+  "entity": {
+    "switch": {
+      "left_zone": {
+        "name": "Left zone"
+      },
+      "right_zone": {
+        "name": "Right zone"
+      }
+    },
+    "number": {
+      "left_duration": {
+        "name": "Left duration"
+      },
+      "right_duration": {
+        "name": "Right duration"
+      },
+      "left_flow_rate": {
+        "name": "Left calibrated flow rate"
+      },
+      "right_flow_rate": {
+        "name": "Right calibrated flow rate"
+      }
+    },
+    "binary_sensor": {
+      "left_running": {
+        "name": "Left running"
+      },
+      "right_running": {
+        "name": "Right running"
+      }
+    },
+    "sensor": {
+      "battery": {
+        "name": "Battery"
+      },
+      "left_cycle_runtime": {
+        "name": "Left cycle runtime"
+      },
+      "right_cycle_runtime": {
+        "name": "Right cycle runtime"
+      },
+      "left_total_runtime": {
+        "name": "Left total runtime"
+      },
+      "right_total_runtime": {
+        "name": "Right total runtime"
+      },
+      "left_cycle_water": {
+        "name": "Left cycle water"
+      },
+      "right_cycle_water": {
+        "name": "Right cycle water"
+      },
+      "left_total_water": {
+        "name": "Left total water"
+      },
+      "right_total_water": {
+        "name": "Right total water"
+      },
+      "left_reported_flow": {
+        "name": "Left reported flow"
+      },
+      "right_reported_flow": {
+        "name": "Right reported flow"
+      },
+      "left_temperature": {
+        "name": "Left temperature"
+      },
+      "right_temperature": {
+        "name": "Right temperature"
+      },
+      "left_moisture": {
+        "name": "Left moisture"
+      },
+      "right_moisture": {
+        "name": "Right moisture"
+      }
+    }
+  }
+}
