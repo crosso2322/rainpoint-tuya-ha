@@ -118,7 +118,7 @@ class RainPointCycleWaterSensor(RainPointZoneSensor):
 
     _attr_native_unit_of_measurement = UnitOfVolume.GALLONS
     _attr_device_class = SensorDeviceClass.WATER
-    _attr_state_class = SensorStateClass.MEASUREMENT
+    _attr_state_class = SensorStateClass.Total
     _attr_icon = "mdi:water"
 
     def __init__(self, coordinator: RainPointCoordinator, zone: str) -> None:
