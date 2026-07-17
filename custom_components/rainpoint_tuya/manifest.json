@@ -1,16 +1,16 @@
-{
+﻿{
   "domain": "rainpoint_tuya",
   "name": "RainPoint Tuya Cloud",
   "codeowners": [
-    "@cross02322"
+    "@crosso2322"
   ],
   "config_flow": true,
-  "documentation": "https://github.com/cross02322/rainpoint-tuya-ha",
-  "issue_tracker": "https://github.com/cross02322/rainpoint-tuya-ha/issues",
-  "integration_type": "device",
+  "documentation": "https://github.com/crosso2322/rainpoint-tuya-ha",
+  "integration_type": "hub",
   "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/crosso2322/rainpoint-tuya-ha/issues",
   "requirements": [
-    "tinytuya>=1.17.0,<2.0.0"
+    "tinytuya>=1.17.4"
   ],
-  "version": "1.0.0"
+  "version": "1.0.1"
 }
