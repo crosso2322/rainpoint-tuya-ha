@@ -10,7 +10,7 @@
   "iot_class": "cloud_polling",
   "issue_tracker": "https://github.com/crosso2322/rainpoint-tuya-ha/issues",
   "requirements": [
-    "tinytuya>=1.17.4"
+    "tinytuya==1.17.4"
   ],
   "version": "1.0.1"
 }
