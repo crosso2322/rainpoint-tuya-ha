@@ -2,73 +2,45 @@
 
 A HACS-compatible custom integration for the Tuya-based RainPoint Smart 2-Zone Water Timer.
 
-## Confirmed protocol mapping
+## v1.0 features
 
-The timer uses code-based Tuya Cloud commands and inverted valve booleans:
+- UI setup, reauthentication, and reconfiguration
+- Left and right irrigation controls
+- Per-zone watering duration
+- Correct inverted RainPoint valve logic
+- Running-state, battery, runtime, and estimated-water entities
+- Persistent cumulative runtime and estimated water usage
+- Optional probe entities unavailable until probes are paired
+- Vendor flow entities unavailable until nonzero flow is reported
+- Redacted diagnostics and System Health
+- HACS/Hassfest validation and automated GitHub releases
 
-- Start left: `LeftManualTimer=<minutes>` + `LeftManualSwitch=false`
-- Stop left: `LeftManualSwitch=true`
-- Start right: `RightManualTimer=<minutes>` + `RightManualSwitch=false`
-- Stop right: `RightManualSwitch=true`
-- Running: `LeftWorkStatus == "1"` / `RightWorkStatus == "1"`
-- Idle: work status `"0"`
+## Upgrade from v0.1.0
 
-## Entities
-
-- Left and right irrigation switches
-- Left and right default duration controls
-- Left and right calibrated gallons-per-minute controls
-- Running binary sensors
-- Battery sensor
-- Current/last cycle runtime
-- Cumulative runtime
-- Estimated cycle and cumulative water usage
-- Raw vendor flow values
-- Optional temperature and moisture values
-
-Water use starts at zero until a GPM calibration is entered. Runtime and cumulative estimated usage are persisted in Home Assistant storage.
-
-## Installation now (manual)
-
-1. Download the release ZIP.
-2. Copy `custom_components/rainpoint_tuya` into `/config/custom_components/`.
+1. Back up Home Assistant.
+2. Replace `/config/custom_components/rainpoint_tuya` with the v1.0.0 folder.
 3. Restart Home Assistant.
-4. Go to **Settings → Devices & services → Add integration**.
-5. Search for **RainPoint Tuya Cloud**.
-6. Enter the same Tuya credentials and device IDs used by the working TinyTuya test.
+4. Existing config entries and entity IDs should remain because the integration domain and entity unique IDs are unchanged.
+5. Review the duration and GPM settings under the integration configuration.
 
-## Installation through HACS after publishing to GitHub
+## HACS custom repository
 
-1. Create a public GitHub repository.
-2. Upload this repository structure without nesting it inside another folder.
-3. Create a GitHub release, starting with `v0.1.0`.
-4. In HACS, open **Custom repositories**.
-5. Add the repository URL as category **Integration**.
-6. Download, restart Home Assistant, then add the integration.
+Add `https://github.com/cross02322/rainpoint-tuya-ha` as a HACS custom repository of type **Integration**.
 
-## Tuya fields
+## Confirmed protocol
 
-- **API region:** Usually `us` for the United States. Use the same value as `tinytuya.json`.
-- **Access ID / Secret:** Tuya IoT Cloud project credentials.
-- **Cloud authorization device ID:** The `apiDeviceID` value used by TinyTuya.
-- **Timer device ID:** The RainPoint sub-device ID successfully used with `cloud.sendcommand()`.
+- Start left: `LeftManualTimer=<minutes>` and `LeftManualSwitch=false`
+- Stop left: `LeftManualSwitch=true`
+- Start right: `RightManualTimer=<minutes>` and `RightManualSwitch=false`
+- Stop right: `RightManualSwitch=true`
+- Running: work status equals `"1"`
 
-## Calibration later
+## Calibration
 
-Fill a known container and calculate:
+For a 5-gallon bucket: `GPM = 300 / fill_seconds`.
 
-`GPM = gallons × 60 ÷ fill_seconds`
+Estimated usage is based on observed valve runtime multiplied by the configured GPM.
 
-For a 5-gallon bucket:
+## Security
 
-`GPM = 300 ÷ fill_seconds`
-
-Enter the result through the integration's configuration page or the GPM number entities.
-
-## Safety
-
-Cloud commands can be delayed. Keep the timer's physical controls available and test with short durations first. The integration polls every 10 seconds by default and supports a minimum of 5 seconds to avoid excessive Tuya Cloud API use.
-
-## Development
-
-The repository includes HACS and Hassfest validation workflows.
+Download diagnostics from Home Assistant before filing an issue. Credentials and device IDs are redacted. Do not enable TinyTuya debug logging when sharing logs because it may include access tokens or authentication headers.

@@ -1,0 +1,20 @@
+name: Bug report
+description: Report a RainPoint integration problem
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: "Attach redacted diagnostics. Never post API secrets or access tokens."
+  - type: input
+    id: ha_version
+    attributes: {label: Home Assistant version}
+    validations: {required: true}
+  - type: input
+    id: integration_version
+    attributes: {label: Integration version}
+    validations: {required: true}
+  - type: textarea
+    id: problem
+    attributes: {label: Problem description}
+    validations: {required: true}

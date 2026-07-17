@@ -2,15 +2,15 @@
   "domain": "rainpoint_tuya",
   "name": "RainPoint Tuya Cloud",
   "codeowners": [
-    "@ocross"
+    "@cross02322"
   ],
   "config_flow": true,
-  "documentation": "https://github.com/ocross/rainpoint-tuya-ha",
-  "issue_tracker": "https://github.com/ocross/rainpoint-tuya-ha/issues",
+  "documentation": "https://github.com/cross02322/rainpoint-tuya-ha",
+  "issue_tracker": "https://github.com/cross02322/rainpoint-tuya-ha/issues",
   "integration_type": "device",
   "iot_class": "cloud_polling",
   "requirements": [
     "tinytuya>=1.17.0,<2.0.0"
   ],
-  "version": "0.1.0"
+  "version": "1.0.0"
 }

@@ -1,0 +1,8 @@
+{
+  "entity": {
+    "switch": {"left_zone": {"default": "mdi:water-pump"}, "right_zone": {"default": "mdi:water-pump"}},
+    "number": {"left_duration": {"default": "mdi:timer-outline"}, "right_duration": {"default": "mdi:timer-outline"}, "left_flow_rate": {"default": "mdi:waves-arrow-right"}, "right_flow_rate": {"default": "mdi:waves-arrow-right"}},
+    "binary_sensor": {"left_running": {"default": "mdi:sprinkler-variant"}, "right_running": {"default": "mdi:sprinkler-variant"}},
+    "sensor": {"battery": {"default": "mdi:battery"}, "left_cycle_runtime": {"default": "mdi:timer-play-outline"}, "right_cycle_runtime": {"default": "mdi:timer-play-outline"}, "left_total_runtime": {"default": "mdi:timer-sand-complete"}, "right_total_runtime": {"default": "mdi:timer-sand-complete"}, "left_cycle_water": {"default": "mdi:water"}, "right_cycle_water": {"default": "mdi:water"}, "left_total_water": {"default": "mdi:water-circle"}, "right_total_water": {"default": "mdi:water-circle"}, "left_reported_flow": {"default": "mdi:waves"}, "right_reported_flow": {"default": "mdi:waves"}, "left_temperature": {"default": "mdi:thermometer"}, "right_temperature": {"default": "mdi:thermometer"}, "left_moisture": {"default": "mdi:water-percent"}, "right_moisture": {"default": "mdi:water-percent"}}
+  }
+}

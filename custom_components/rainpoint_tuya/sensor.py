@@ -9,6 +9,7 @@ from homeassistant.components.sensor import (
 )
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import (
+    EntityCategory,
     PERCENTAGE,
     UnitOfTemperature,
     UnitOfTime,
@@ -51,7 +52,7 @@ class RainPointBatterySensor(RainPointEntity, SensorEntity):
     _attr_device_class = SensorDeviceClass.BATTERY
     _attr_native_unit_of_measurement = PERCENTAGE
     _attr_state_class = SensorStateClass.MEASUREMENT
-    _attr_icon = "mdi:battery"
+    _attr_entity_category = EntityCategory.DIAGNOSTIC
 
     def __init__(self, coordinator: RainPointCoordinator) -> None:
         super().__init__(coordinator, "battery", "battery")
@@ -154,6 +155,14 @@ class RainPointReportedFlowSensor(RainPointZoneSensor):
         super().__init__(coordinator, zone, "reported_flow")
 
     @property
+    def available(self) -> bool:
+        value = self.coordinator.data.status.get(ZONE_CODES[self.zone]["flow"])
+        try:
+            return super().available and float(value) > 0
+        except (TypeError, ValueError):
+            return False
+
+    @property
     def native_value(self) -> float | None:
         value = self.coordinator.data.status.get(ZONE_CODES[self.zone]["flow"])
         try:
@@ -168,10 +177,15 @@ class RainPointTemperatureSensor(RainPointZoneSensor):
     _attr_device_class = SensorDeviceClass.TEMPERATURE
     _attr_native_unit_of_measurement = UnitOfTemperature.CELSIUS
     _attr_state_class = SensorStateClass.MEASUREMENT
-    _attr_icon = "mdi:thermometer"
+    _attr_entity_category = EntityCategory.DIAGNOSTIC
 
     def __init__(self, coordinator: RainPointCoordinator, zone: str) -> None:
         super().__init__(coordinator, zone, "temperature")
+
+    @property
+    def available(self) -> bool:
+        code = "LeftAddMoisureSensor" if self.zone == "left" else "RightAddMoisure"
+        return super().available and self.coordinator.data.status.get(code) is True
 
     @property
     def native_value(self) -> float | None:
@@ -190,10 +204,15 @@ class RainPointMoistureSensor(RainPointZoneSensor):
     _attr_device_class = SensorDeviceClass.MOISTURE
     _attr_native_unit_of_measurement = PERCENTAGE
     _attr_state_class = SensorStateClass.MEASUREMENT
-    _attr_icon = "mdi:water-percent"
+    _attr_entity_category = EntityCategory.DIAGNOSTIC
 
     def __init__(self, coordinator: RainPointCoordinator, zone: str) -> None:
         super().__init__(coordinator, zone, "moisture")
+
+    @property
+    def available(self) -> bool:
+        code = "LeftAddMoisureSensor" if self.zone == "left" else "RightAddMoisure"
+        return super().available and self.coordinator.data.status.get(code) is True
 
     @property
     def native_value(self) -> float | None:

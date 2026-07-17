@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from homeassistant.components.number import NumberEntity, NumberMode
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import UnitOfTime, UnitOfVolumeFlowRate
+from homeassistant.const import EntityCategory, UnitOfTime, UnitOfVolumeFlowRate
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
@@ -41,6 +41,8 @@ async def async_setup_entry(
 
 class RainPointOptionNumber(RainPointEntity, NumberEntity):
     """Base number backed by config entry options."""
+
+    _attr_entity_category = EntityCategory.CONFIG
 
     def __init__(
         self,

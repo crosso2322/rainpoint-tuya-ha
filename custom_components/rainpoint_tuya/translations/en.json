@@ -13,6 +13,30 @@
           "api_device_id": "Cloud authorization device ID",
           "device_id": "RainPoint timer device ID"
         }
+      },
+      "reauth_confirm": {
+        "title": "Reconnect RainPoint",
+        "description": "Update the Tuya Cloud credentials.",
+        "data": {
+          "name": "Name",
+          "api_region": "Tuya API region",
+          "api_key": "Access ID / Client ID",
+          "api_secret": "Access Secret / Client Secret",
+          "api_device_id": "Cloud authorization device ID",
+          "device_id": "RainPoint timer device ID"
+        }
+      },
+      "reconfigure": {
+        "title": "Reconfigure RainPoint",
+        "description": "Update the Tuya region, credentials, or device IDs.",
+        "data": {
+          "name": "Name",
+          "api_region": "Tuya API region",
+          "api_key": "Access ID / Client ID",
+          "api_secret": "Access Secret / Client Secret",
+          "api_device_id": "Cloud authorization device ID",
+          "device_id": "RainPoint timer device ID"
+        }
       }
     },
     "error": {
@@ -22,7 +46,9 @@
       "unknown": "Unexpected error."
     },
     "abort": {
-      "already_configured": "This RainPoint timer is already configured."
+      "already_configured": "This RainPoint timer is already configured.",
+      "reauth_successful": "RainPoint was reconnected successfully.",
+      "reconfigure_successful": "RainPoint was reconfigured successfully."
     }
   },
   "options": {
